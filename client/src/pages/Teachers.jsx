@@ -18,7 +18,7 @@ export const Teachers = () => {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem' }}>
         {faculty.map((teacher) => (
           <div className="stat-card" key={teacher.id}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
@@ -39,7 +39,7 @@ export const Teachers = () => {
                 {teacher.avatar}
               </div>
               <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f172a' }}>{teacher.name}</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)' }}>{teacher.name}</h3>
                 <span className="role-pill TEACHER">{teacher.dept} Department</span>
               </div>
             </div>

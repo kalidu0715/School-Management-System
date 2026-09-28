@@ -1222,11 +1222,44 @@ body {
   color: #f9fafb !important;
 }
 
-[data-theme="dark"] .chat-input-box::placeholder {
-  color: #94a3b8 !important;
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] strong,
+[data-theme="dark"] .page-h1,
+[data-theme="dark"] .notice-title,
+[data-theme="dark"] .user-name,
+[data-theme="dark"] .user-name-bold,
+[data-theme="dark"] .card-title-h2,
+[data-theme="dark"] .stat-num,
+[data-theme="dark"] .info-card-header,
+[data-theme="dark"] .brand-header {
+  color: #f9fafb !important;
 }
 
-/* Sidebar Hide-able & Mobile Drawer Functionality */
+[data-theme="dark"] p,
+[data-theme="dark"] .page-sub,
+[data-theme="dark"] .notice-body {
+  color: #cbd5e1;
+}
+
+/* Sidebar Hide-able & Mobile Drawer Functionality with Touch Scrolling */
+.sidebar {
+  width: 240px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 0.85rem;
+  flex-shrink: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .sidebar-toggle-btn {
   display: flex;
   align-items: center;
@@ -1265,10 +1298,16 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: 999;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
 
   .sidebar.open {
@@ -1314,13 +1353,13 @@ body {
   }
 
   .content-body {
-    padding: 1rem 0.85rem;
+    padding: 1rem 0.75rem !important;
   }
 
   .page-title-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
   }
 
   .page-h1 {
@@ -1328,10 +1367,17 @@ body {
   }
 
   /* Force multi-column stat card grids to 1 column on mobile */
+  .metrics-grid,
+  .bottom-grid,
+  div[style*="gridTemplateColumns: repeat(2, 1fr)"],
   div[style*="gridTemplateColumns: repeat(3, 1fr)"],
   div[style*="gridTemplateColumns: repeat(4, 1fr)"],
   div[style*="gridTemplateColumns: 1fr 1fr 1fr"] {
     grid-template-columns: 1fr !important;
+  }
+
+  .stat-card {
+    width: 100% !important;
   }
 
   /* Ensure tables scroll smoothly on mobile */
@@ -1363,6 +1409,7 @@ body {
     height: 480px !important;
   }
 }
+
 
 
 
