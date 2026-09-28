@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Search, Bell, ChevronRight, LogOut, Sun, Moon } from 'lucide-react';
+import { Search, Bell, ChevronRight, LogOut, Sun, Moon, Menu } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 
-export const Header = ({ activeTab, onOpenSearch }) => {
+export const Header = ({ activeTab, onOpenSearch, onToggleSidebar }) => {
   const { user, logout, activeRoleView } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -30,11 +30,21 @@ export const Header = ({ activeTab, onOpenSearch }) => {
 
   return (
     <header className="top-header">
-      {/* Breadcrumb Trail */}
-      <div className="breadcrumb-trail">
-        <span>Dashboard</span>
-        <ChevronRight size={14} />
-        <span className="current">{getBreadcrumbTitle()}</span>
+      {/* Sidebar Toggle & Breadcrumb Trail */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <button
+          className="icon-btn sidebar-toggle-btn"
+          title="Toggle Navigation Bar"
+          onClick={onToggleSidebar}
+        >
+          <Menu size={20} />
+        </button>
+
+        <div className="breadcrumb-trail">
+          <span>Dashboard</span>
+          <ChevronRight size={14} />
+          <span className="current">{getBreadcrumbTitle()}</span>
+        </div>
       </div>
 
       {/* Header Controls */}

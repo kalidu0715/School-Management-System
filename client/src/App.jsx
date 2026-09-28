@@ -28,6 +28,7 @@ const MainAppLayout = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [authScreen, setAuthScreen] = useState('login'); // 'login' or 'register'
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
     if (authScreen === 'register') {
@@ -73,10 +74,20 @@ const MainAppLayout = () => {
   };
 
   return (
-    <div className="app-container">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className={`app-container ${isSidebarOpen ? 'sidebar-expanded' : ''}`}>
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+
       <div className="main-wrapper">
-        <Header activeTab={activeTab} onOpenSearch={() => setIsSearchOpen(true)} />
+        <Header
+          activeTab={activeTab}
+          onOpenSearch={() => setIsSearchOpen(true)}
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
         {renderActivePage()}
       </div>
 
