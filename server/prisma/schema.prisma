@@ -1,0 +1,175 @@
+// Prisma Schema for School Management System
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  PRINCIPAL
+  TEACHER
+  STUDENT
+  PARENT
+}
+
+enum AuthStatus {
+  AUTH_OK
+  AUTH_WARN
+  AUTH_ERR
+}
+
+enum BillingStatus {
+  PAID
+  PENDING
+  OVERDUE
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  password     String
+  name         String
+  role         Role          @default(STUDENT)
+  avatar       String?
+  department   String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  teacherProfile Teacher?
+  studentProfile Student?
+  parentProfile  Parent?
+  activityLogs   ActivityLog[]
+  authLogs       AuthLog[]
+
+  @@map("users")
+}
+
+model Teacher {
+  id             String    @id @default(uuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department     String
+  specialization String
+  subjects       Subject[]
+
+  @@map("teachers")
+}
+
+model Student {
+  id             String          @id @default(uuid())
+  userId         String          @unique
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  grade          String
+  parentId       String?
+  parent         Parent?         @relation(fields: [parentId], references: [id])
+  billingRecords BillingRecord[]
+
+  @@map("students")
+}
+
+model Parent {
+  id             String          @id @default(uuid())
+  userId         String          @unique
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone          String
+  students       Student[]
+  billingRecords BillingRecord[]
+
+  @@map("parents")
+}
+
+model Subject {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  name      String
+  grade     String
+  teacherId String?
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+  exams     Exam[]
+
+  @@map("subjects")
+}
+
+model Exam {
+  id        String   @id @default(uuid())
+  title     String
+  subjectId String
+  subject   Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  grade     String
+  date      DateTime
+  status    String   @default("Scheduled")
+
+  @@map("exams")
+}
+
+model ActivityLog {
+  id                String   @id @default(uuid())
+  role              String
+  user              String
+  userId            String?
+  userRef           User?    @relation(fields: [userId], references: [id])
+  actionDescription String
+  timestamp         DateTime @default(now())
+
+  @@map("activity_logs")
+}
+
+model AuthLog {
+  id        String     @id @default(uuid())
+  status    AuthStatus @default(AUTH_OK)
+  message   String
+  ip        String?
+  userId    String?
+  user      User?      @relation(fields: [userId], references: [id])
+  timestamp DateTime   @default(now())
+
+  @@map("auth_logs")
+}
+
+model BillingRecord {
+  id            String        @id @default(uuid())
+  studentId     String?
+  student       Student?      @relation(fields: [studentId], references: [id])
+  parentId      String?
+  parent        Parent?       @relation(fields: [parentId], references: [id])
+  term          String
+  amount        Float
+  status        BillingStatus @default(PENDING)
+  paymentMethod String?
+  transactionId String?
+  createdAt     DateTime      @default(now())
+
+  @@map("billing_records")
+}
+
+model Notice {
+  id             String   @id @default(uuid())
+  title          String
+  targetAudience String
+  priority       String   @default("Important")
+  content        String
+  author         String
+  createdAt      DateTime @default(now())
+
+  @@map("notices")
+}
+
+model ParentFeedback {
+  id         String   @id @default(uuid())
+  parentName String
+  type       String
+  department String
+  subject    String
+  message    String
+  status     String   @default("Pending Admin Review")
+  createdAt  DateTime @default(now())
+
+  @@map("parent_feedback")
+}
+
