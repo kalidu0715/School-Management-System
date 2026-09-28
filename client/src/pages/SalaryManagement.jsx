@@ -35,15 +35,15 @@ export const SalaryManagement = () => {
   }
 
   const salaries = [
-    { id: 'sal-1', name: 'Sajith', role: 'Teacher (Mathematics)', base: '$4,200.00', bonus: '$300.00', net: '$4,500.00', status: 'Paid', date: '2026-03-01' },
-    { id: 'sal-2', name: 'Rehan', role: 'Teacher (Biology)', base: '$4,100.00', bonus: '$250.00', net: '$4,350.00', status: 'Paid', date: '2026-03-01' },
-    { id: 'sal-3', name: 'Principal', role: 'Executive Operations', base: '$6,500.00', bonus: '$500.00', net: '$7,000.00', status: 'Paid', date: '2026-03-01' },
-    { id: 'sal-4', name: 'Amal', role: 'Teacher (History)', base: '$3,900.00', bonus: '$200.00', net: '$4,100.00', status: 'Processing', date: '2026-03-01' },
-    { id: 'sal-5', name: 'Siriwardhane', role: 'Teacher (Physics)', base: '$4,200.00', bonus: '$300.00', net: '$4,500.00', status: 'Processing', date: '2026-03-01' },
+    { id: 'sal-1', name: 'Sajith', role: 'Teacher (Mathematics)', base: 'LKR 420,000.00', bonus: 'LKR 30,000.00', net: 'LKR 450,000.00', status: 'Paid', date: '2026-03-01' },
+    { id: 'sal-2', name: 'Rehan', role: 'Teacher (Biology)', base: 'LKR 410,000.00', bonus: 'LKR 25,000.00', net: 'LKR 435,000.00', status: 'Paid', date: '2026-03-01' },
+    { id: 'sal-3', name: 'Principal', role: 'Executive Operations', base: 'LKR 650,000.00', bonus: 'LKR 50,000.00', net: 'LKR 700,000.00', status: 'Paid', date: '2026-03-01' },
+    { id: 'sal-4', name: 'Amal', role: 'Teacher (History)', base: 'LKR 390,000.00', bonus: 'LKR 20,000.00', net: 'LKR 410,000.00', status: 'Processing', date: '2026-03-01' },
+    { id: 'sal-5', name: 'Siriwardhane', role: 'Teacher (Physics)', base: 'LKR 420,000.00', bonus: 'LKR 30,000.00', net: 'LKR 450,000.00', status: 'Processing', date: '2026-03-01' },
   ];
 
   const downloadSlip = (name) => {
-    const text = `SCHOOL MANAGEMENT SYSTEM - OFFICIAL SALARY PAYSLIP\nStaff Member: ${name}\nPay Period: March 2026\nStatus: DISBURSED VIA DIRECT DEPOSIT\nAuthorized by: Administration & Principal Office`;
+    const text = `SCHOOL MANAGEMENT SYSTEM - OFFICIAL SALARY PAYSLIP (LKR)\nStaff Member: ${name}\nPay Period: March 2026\nStatus: DISBURSED VIA DIRECT BANK DEPOSIT\nAuthorized by: Registrar Office & Administration`;
     const blob = new Blob([text], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -56,9 +56,9 @@ export const SalaryManagement = () => {
     <div className="content-body">
       <div className="page-title-row">
         <div>
-          <h1 className="page-h1">Staff Salary & Payroll Management</h1>
+          <h1 className="page-h1">Staff Salary & Payroll Management (LKR)</h1>
           <p className="page-sub">
-            Confidential administrative ledger for faculty compensation, monthly disbursements, and pay slips.
+            Confidential administrative ledger for faculty compensation in Sri Lankan Rupees (LKR), monthly disbursements, and pay slips.
           </p>
         </div>
       </div>
@@ -66,10 +66,10 @@ export const SalaryManagement = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem', marginBottom: '1.75rem' }}>
         <div className="stat-card">
           <div className="stat-header">
-            <span className="stat-title">TOTAL MONTHLY PAYROLL</span>
+            <span className="stat-title">TOTAL MONTHLY PAYROLL (LKR)</span>
             <DollarSign className="stat-icon" />
           </div>
-          <div className="stat-num" style={{ fontSize: '1.6rem' }}>$48,500.00</div>
+          <div className="stat-num" style={{ fontSize: '1.5rem' }}>LKR 4,850,000.00</div>
           <div className="stat-subtext">March 2026 Term</div>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CreditCard, Calendar, CheckCircle2, Download, Plus, Clock, ShieldCheck, DollarSign, X } from 'lucide-react';
+import { CreditCard, Calendar, CheckCircle2, Download, Plus, Clock, ShieldCheck, Banknote, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const PaymentManagement = () => {
@@ -20,7 +20,7 @@ export const PaymentManagement = () => {
       payer: 'Amitha (Parent)',
       planType: 'Term 1 (Spring 2026)',
       frequency: 'Term-Wise',
-      amount: '$950.00',
+      amount: 'LKR 95,000',
       method: 'Credit Card',
       status: 'Cleared & Verified',
     },
@@ -31,7 +31,7 @@ export const PaymentManagement = () => {
       payer: 'Amitha (Parent)',
       planType: 'Term 3 (Winter 2025)',
       frequency: 'Term-Wise',
-      amount: '$950.00',
+      amount: 'LKR 95,000',
       method: 'Online Banking',
       status: 'Cleared & Verified',
     },
@@ -42,7 +42,7 @@ export const PaymentManagement = () => {
       payer: 'Supuni (Parent)',
       planType: 'Annual 2025-2026',
       frequency: 'Annual (10% Disc)',
-      amount: '$2,700.00',
+      amount: 'LKR 270,000',
       method: 'Direct Bank Wire',
       status: 'Cleared & Verified',
     },
@@ -51,14 +51,14 @@ export const PaymentManagement = () => {
   const handleProcessPayment = (e) => {
     e.preventDefault();
 
-    let amountStr = '$950.00';
+    let amountStr = 'LKR 95,000';
     let planTitle = selectedTerm;
 
     if (selectedPlan === 'MONTHLY') {
-      amountStr = '$250.00';
+      amountStr = 'LKR 25,000';
       planTitle = `Monthly Fee (${selectedMonth})`;
     } else if (selectedPlan === 'ANNUAL') {
-      amountStr = '$2,700.00';
+      amountStr = 'LKR 270,000';
       planTitle = 'Full Academic Year 2026-2027';
     }
 
@@ -90,7 +90,7 @@ Student Name: ${item.studentName}
 Payer / Guardian: ${item.payer}
 Payment Frequency: ${item.frequency}
 Covered Term / Period: ${item.planType}
-Total Amount Paid: ${item.amount}
+Total Amount Paid: ${item.amount} (Sri Lankan Rupees)
 Payment Method: ${item.method}
 Clearance Status: ${item.status}
 
@@ -109,8 +109,8 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
     <div className="content-body">
       <div className="page-title-row">
         <div>
-          <h1 className="page-h1">Tuition Fee Payment Management</h1>
-          <p className="page-sub">Pay student tuition fees by Monthly, Term-Wise (3 Terms/Year), or Annual plans & access payment history.</p>
+          <h1 className="page-h1">Tuition Fee Payment Management (LKR)</h1>
+          <p className="page-sub">Pay student tuition fees in Sri Lankan Rupees (LKR) by Monthly, Term-Wise (3 Terms/Year), or Annual plans & access payment history.</p>
         </div>
 
         <button className="btn-force-sync" style={{ background: 'var(--primary-gradient)' }} onClick={() => setIsModalOpen(true)}>
@@ -139,7 +139,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
         </div>
       )}
 
-      {/* Tuition Plan Cards (Monthly, Term-Wise, Annual) */}
+      {/* Tuition Plan Cards (Monthly, Term-Wise, Annual in LKR) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem', marginBottom: '1.75rem' }}>
         {/* Monthly Plan */}
         <div className="stat-card" style={{ border: selectedPlan === 'MONTHLY' ? '2px solid #6366f1' : '1px solid var(--border-light)' }}>
@@ -147,7 +147,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
             <span className="stat-title">MONTHLY PLAN</span>
             <Calendar className="stat-icon" color="#6366f1" />
           </div>
-          <div className="stat-num" style={{ fontSize: '1.6rem' }}>$250.00 / mo</div>
+          <div className="stat-num" style={{ fontSize: '1.5rem' }}>LKR 25,000 / mo</div>
           <div className="stat-subtext">Flexible month-by-month payment</div>
           <button
             className="btn-secondary"
@@ -167,7 +167,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
             <span className="stat-title" style={{ color: '#4c1d95', fontWeight: 700 }}>TERM-WISE PLAN (3 TERMS / YR)</span>
             <CreditCard className="stat-icon" color="#8b5cf6" />
           </div>
-          <div className="stat-num" style={{ fontSize: '1.6rem', color: '#5b21b6' }}>$950.00 / term</div>
+          <div className="stat-num" style={{ fontSize: '1.5rem', color: '#5b21b6' }}>LKR 95,000 / term</div>
           <div className="stat-subtext" style={{ color: '#6d28d9' }}>Term 1 (Spring), Term 2 (Summer), Term 3 (Winter)</div>
           <button
             className="btn-primary"
@@ -185,10 +185,10 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
         <div className="stat-card" style={{ border: selectedPlan === 'ANNUAL' ? '2px solid #6366f1' : '1px solid var(--border-light)' }}>
           <div className="stat-header">
             <span className="stat-title">ANNUAL PLAN (10% OFF)</span>
-            <DollarSign className="stat-icon" color="#10b981" />
+            <Banknote className="stat-icon" color="#10b981" />
           </div>
-          <div className="stat-num" style={{ fontSize: '1.6rem', color: '#15803d' }}>$2,700.00 / yr</div>
-          <div className="stat-subtext">Covers all 3 terms with $300 savings</div>
+          <div className="stat-num" style={{ fontSize: '1.5rem', color: '#15803d' }}>LKR 270,000 / yr</div>
+          <div className="stat-subtext">Covers all 3 terms with LKR 15,000 savings</div>
           <button
             className="btn-secondary"
             style={{ width: '100%', marginTop: '1rem', justifyContent: 'center' }}
@@ -207,7 +207,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
         <div className="card-header-action">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <Clock size={18} color="#6366f1" />
-            <h2 className="card-title-h2">Student Payment History Ledger</h2>
+            <h2 className="card-title-h2">Student Payment History Ledger (LKR)</h2>
           </div>
           <span className="stat-badge green">Verified Clearances</span>
         </div>
@@ -221,7 +221,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
                 <th>STUDENT / PAYER</th>
                 <th>PLAN FREQUENCY</th>
                 <th>COVERED TERM / PERIOD</th>
-                <th>AMOUNT PAID</th>
+                <th>AMOUNT PAID (LKR)</th>
                 <th>PAYMENT METHOD</th>
                 <th>STATUS</th>
                 <th>ACTION</th>
@@ -271,7 +271,7 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
             <div className="modal-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <CreditCard size={20} color="#6366f1" />
-                <h3 className="modal-title">Pay Student Tuition Fee</h3>
+                <h3 className="modal-title">Pay Student Tuition Fee (LKR)</h3>
               </div>
               <button className="icon-btn" onClick={() => setIsModalOpen(false)}>
                 <X size={18} />
@@ -286,9 +286,9 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
                   value={selectedPlan}
                   onChange={(e) => setSelectedPlan(e.target.value)}
                 >
-                  <option value="TERM">Term-Wise Plan ($950.00 / term)</option>
-                  <option value="MONTHLY">Monthly Plan ($250.00 / month)</option>
-                  <option value="ANNUAL">Annual Plan ($2,700.00 / year - 10% OFF)</option>
+                  <option value="TERM">Term-Wise Plan (LKR 95,000 / term)</option>
+                  <option value="MONTHLY">Monthly Plan (LKR 25,000 / month)</option>
+                  <option value="ANNUAL">Annual Plan (LKR 270,000 / year - 10% OFF)</option>
                 </select>
               </div>
 
@@ -300,9 +300,9 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
                     value={selectedTerm}
                     onChange={(e) => setSelectedTerm(e.target.value)}
                   >
-                    <option value="Term 1 (Spring 2026)">Term 1 (Spring Term: Jan - Apr) - $950.00</option>
-                    <option value="Term 2 (Summer 2026)">Term 2 (Summer Term: May - Aug) - $950.00</option>
-                    <option value="Term 3 (Winter 2026)">Term 3 (Winter Term: Sep - Dec) - $950.00</option>
+                    <option value="Term 1 (Spring 2026)">Term 1 (Spring Term: Jan - Apr) - LKR 95,000</option>
+                    <option value="Term 2 (Summer 2026)">Term 2 (Summer Term: May - Aug) - LKR 95,000</option>
+                    <option value="Term 3 (Winter 2026)">Term 3 (Winter Term: Sep - Dec) - LKR 95,000</option>
                   </select>
                 </div>
               )}
@@ -315,11 +315,11 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                   >
-                    <option value="January 2026">January 2026 ($250.00)</option>
-                    <option value="February 2026">February 2026 ($250.00)</option>
-                    <option value="March 2026">March 2026 ($250.00)</option>
-                    <option value="April 2026">April 2026 ($250.00)</option>
-                    <option value="May 2026">May 2026 ($250.00)</option>
+                    <option value="January 2026">January 2026 (LKR 25,000)</option>
+                    <option value="February 2026">February 2026 (LKR 25,000)</option>
+                    <option value="March 2026">March 2026 (LKR 25,000)</option>
+                    <option value="April 2026">April 2026 (LKR 25,000)</option>
+                    <option value="May 2026">May 2026 (LKR 25,000)</option>
                   </select>
                 </div>
               )}
@@ -339,15 +339,15 @@ Verification Code: SYS-PAY-${Math.floor(100000 + Math.random() * 900000)}`;
 
               <div style={{ padding: '0.85rem 1rem', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: '1.25rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>
-                  <span>Total Amount Due:</span>
+                  <span>Total Amount Due (LKR):</span>
                   <span style={{ color: '#6366f1' }}>
-                    {selectedPlan === 'MONTHLY' ? '$250.00' : selectedPlan === 'ANNUAL' ? '$2,700.00' : '$950.00'}
+                    {selectedPlan === 'MONTHLY' ? 'LKR 25,000' : selectedPlan === 'ANNUAL' ? 'LKR 270,000' : 'LKR 95,000'}
                   </span>
                 </div>
               </div>
 
               <button type="submit" className="btn-primary">
-                Confirm & Pay Tuition Fee
+                Confirm & Pay Tuition Fee (LKR)
               </button>
             </form>
           </div>
