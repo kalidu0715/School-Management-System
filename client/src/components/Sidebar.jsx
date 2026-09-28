@@ -90,7 +90,7 @@ export const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
                 onClick={() => handleNavClick('full-reports')}
               >
                 <FileText size={18} />
-                <span>Full Exam Reports (1-13)</span>
+                <span>Exam Reports (1-13)</span>
               </div>
             )}
             <div
