@@ -214,4 +214,140 @@ router.get('/system/health', async (req, res) => {
   }
 });
 
+// 7. Payment Management & 1-Year Retention Auto-Purge API
+let serverPaymentLedger = [
+  {
+    id: 'inv-8821',
+    date: '2026-03-10',
+    dueDate: '2026-03-15',
+    category: 'Tuition Fee',
+    studentName: 'Ruwin (Grade 10)',
+    studentId: 'std-1',
+    payer: 'Ruwin (Student)',
+    itemTitle: 'Term 1 Academic Tuition (Spring 2026)',
+    frequency: 'Term-Wise',
+    amount: 'LKR 95,000',
+    amountNum: 95000,
+    method: 'Credit Card (Visa)',
+    status: 'Cleared & Verified',
+    complianceState: 'PAID',
+    daysOverdue: 0,
+    receiptCode: 'REG-VERIFIED-8821-LK',
+  },
+  {
+    id: 'inv-8815',
+    date: '2026-03-08',
+    dueDate: '2026-03-10',
+    category: 'Sports Fee',
+    studentName: 'Ruwin (Grade 10)',
+    studentId: 'std-1',
+    payer: 'Ruwin (Student)',
+    itemTitle: 'Cricket Academy & Kit (Term 1)',
+    frequency: 'Term-Wise',
+    amount: 'LKR 18,000',
+    amountNum: 18000,
+    method: 'Online Banking',
+    status: 'Cleared & Verified',
+    complianceState: 'PAID',
+    daysOverdue: 0,
+    receiptCode: 'REG-VERIFIED-8815-LK',
+  },
+  {
+    id: 'inv-7704',
+    date: '2026-02-15',
+    dueDate: '2026-02-20',
+    category: 'Sports Fee',
+    studentName: 'Tharin (Grade 11)',
+    studentId: 'std-2',
+    payer: 'Tharin (Student)',
+    itemTitle: 'Swimming Squad & Pool Membership (Term 1)',
+    frequency: 'Term-Wise',
+    amount: 'LKR 15,000',
+    amountNum: 15000,
+    method: 'Online Banking',
+    status: 'Cleared & Verified',
+    complianceState: 'PAID',
+    daysOverdue: 0,
+    receiptCode: 'REG-VERIFIED-7704-LK',
+  },
+  {
+    id: 'inv-6405',
+    date: '',
+    dueDate: '2026-11-05',
+    category: 'Tuition Fee',
+    studentName: 'Amoda (Grade 10)',
+    studentId: 'std-3',
+    payer: 'Amoda (Student)',
+    itemTitle: 'Term 2 Academic Tuition (Summer 2026)',
+    frequency: 'Term-Wise',
+    amount: 'LKR 95,000',
+    amountNum: 95000,
+    method: 'Pending Gateway / Cash',
+    status: 'Unpaid / Pending Review',
+    complianceState: 'UNPAID',
+    daysOverdue: 0,
+    receiptCode: 'PENDING-REGISTRAR-CLEARANCE',
+  },
+  {
+    id: 'inv-6399',
+    date: '',
+    dueDate: '2026-09-15',
+    category: 'Sports Fee',
+    studentName: 'Amoda (Grade 10)',
+    studentId: 'std-3',
+    payer: 'Amoda (Student)',
+    itemTitle: 'Badminton Court Pass (Term 2 Renewal)',
+    frequency: 'Term-Wise',
+    amount: 'LKR 12,000',
+    amountNum: 12000,
+    method: 'Awaiting Remittance',
+    status: '⚠️ Overdue (Action Required)',
+    complianceState: 'OVERDUE',
+    daysOverdue: 41,
+    receiptCode: 'OVERDUE-PENALTY-ACCRUED',
+  },
+];
+
+const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
+const purgeOlderThanOneYear = () => {
+  const now = Date.now();
+  serverPaymentLedger = serverPaymentLedger.filter((item) => {
+    if (!item.date) return true;
+    return now - new Date(item.date).getTime() <= ONE_YEAR_MS;
+  });
+};
+
+router.get('/payments', (req, res) => {
+  purgeOlderThanOneYear();
+  const { role, studentName } = req.query;
+
+  // Registrar can see every student's record
+  if (role === 'REGISTRAR') {
+    return res.json({
+      records: serverPaymentLedger,
+      metrics: {
+        totalPaid: serverPaymentLedger.filter((p) => p.complianceState === 'PAID').length,
+        totalUnpaid: serverPaymentLedger.filter((p) => p.complianceState === 'UNPAID').length,
+        totalOverdue: serverPaymentLedger.filter((p) => p.complianceState === 'OVERDUE').length,
+      },
+    });
+  }
+
+  // Student can only access their own records
+  if (role === 'STUDENT' && studentName) {
+    const studentRecords = serverPaymentLedger.filter((p) =>
+      p.studentName.toLowerCase().includes(studentName.toLowerCase())
+    );
+    return res.json({
+      studentName,
+      records: studentRecords,
+    });
+  }
+
+  // Other roles have restricted access
+  return res.status(403).json({
+    error: 'Access restricted: Student payment records are only visible to the Registrar Office and the respective student.',
+  });
+});
+
 export default router;
