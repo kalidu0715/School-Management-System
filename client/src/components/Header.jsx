@@ -13,13 +13,13 @@ export const Header = ({ activeTab, onOpenSearch, onToggleSidebar }) => {
       case 'calendar': return 'Academic Event Calendar';
       case 'marks': return 'Student Exam Marks';
       case 'full-reports': return 'Full Exam Reports (Grades 1-13)';
-      case 'payments': return 'Tuition Payment Management';
+      case 'non-academic': return 'Non-Academic & Sports Portfolio';
+      case 'payments': return 'Payments & Fee Center';
       case 'chat': return 'Community Chat & Q&A';
       case 'subjects': return 'Subjects Catalog';
       case 'exams': return 'Exams & Grading';
       case 'teachers': return 'Faculty Directory';
       case 'students': return 'Student Roster';
-      case 'parents': return 'Parent Network';
       case 'role-management': return 'Access Control Matrix';
       case 'salary':
       case 'billing': return 'Salary Management';

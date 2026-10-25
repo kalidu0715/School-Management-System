@@ -18,7 +18,7 @@ import { Subjects } from './pages/Subjects';
 import { Exams } from './pages/Exams';
 import { Teachers } from './pages/Teachers';
 import { Students } from './pages/Students';
-import { Parents } from './pages/Parents';
+import { NonAcademic } from './pages/NonAcademic';
 import { RoleManagement } from './pages/RoleManagement';
 import { SalaryManagement } from './pages/SalaryManagement';
 import { DBStatus } from './pages/DBStatus';
@@ -59,8 +59,8 @@ const MainAppLayout = () => {
         return <Teachers />;
       case 'students':
         return <Students />;
-      case 'parents':
-        return <Parents />;
+      case 'non-academic':
+        return <NonAcademic />;
       case 'role-management':
         return <RoleManagement />;
       case 'salary':

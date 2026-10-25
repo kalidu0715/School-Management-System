@@ -15,9 +15,10 @@ export const SearchModal = ({ isOpen, onClose, onNavigate }) => {
     { type: 'Teacher', name: 'Rehan', meta: 'Biology Department', target: 'teachers' },
     { type: 'Teacher', name: 'Amal', meta: 'History Department', target: 'teachers' },
     { type: 'Teacher', name: 'Siriwardhane', meta: 'Physics Department', target: 'teachers' },
-    { type: 'Parent', name: 'Amitha', meta: 'Parent of Ruwin & Hasini', target: 'parents' },
-    { type: 'Parent', name: 'Supuni', meta: 'Parent of Tharin', target: 'parents' },
-    { type: 'Parent', name: 'Ajith', meta: 'Parent of Amoda', target: 'parents' },
+    { type: 'Sport', name: 'Cricket Academy (Ruwin)', meta: '1st XI Champions • Non-Academic', target: 'non-academic' },
+    { type: 'Sport', name: 'Swimming Squad (Tharin)', meta: 'Sugathadasa Pool • Non-Academic', target: 'non-academic' },
+    { type: 'Sport', name: 'Badminton & Athletics', meta: 'Tournament Medals • Non-Academic', target: 'non-academic' },
+    { type: 'Payment', name: 'Fee & Sports Payments', meta: 'LKR Payment Center', target: 'payments' },
     { type: 'Subject', name: 'Calculus & Advanced Algebra', meta: 'MATH-201', target: 'subjects' },
     { type: 'Subject', name: 'Cell Division & Genetics', meta: 'BIO-104', target: 'subjects' },
   ];

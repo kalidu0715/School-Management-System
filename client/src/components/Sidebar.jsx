@@ -5,7 +5,6 @@ import {
   FileCheck,
   GraduationCap,
   Users,
-  HeartHandshake,
   ShieldCheck,
   CreditCard,
   Database,
@@ -15,6 +14,7 @@ import {
   MessageSquare,
   FileText,
   DollarSign,
+  Trophy,
   X,
   ChevronLeft,
 } from 'lucide-react';
@@ -109,6 +109,18 @@ export const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* Non-Academic & Sports Group */}
+          <div className="sidebar-nav-group">
+            <div className="sidebar-group-title">ACTIVITIES & SPORTS</div>
+            <div
+              className={`nav-link ${activeTab === 'non-academic' ? 'active' : ''}`}
+              onClick={() => handleNavClick('non-academic')}
+            >
+              <Trophy size={18} />
+              <span>Non-Academic</span>
+            </div>
+          </div>
+
           {/* Financial & Community Group */}
           <div className="sidebar-nav-group">
             <div className="sidebar-group-title">FINANCIAL & COMMUNITY</div>
@@ -116,8 +128,8 @@ export const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
               className={`nav-link ${activeTab === 'payments' ? 'active' : ''}`}
               onClick={() => handleNavClick('payments')}
             >
-              <DollarSign size={18} />
-              <span>Tuition Payments</span>
+              <CreditCard size={18} />
+              <span>Payments</span>
             </div>
             <div
               className={`nav-link ${activeTab === 'chat' ? 'active' : ''}`}
@@ -139,13 +151,6 @@ export const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
             >
               <Users size={18} />
               <span>Students</span>
-            </div>
-            <div
-              className={`nav-link ${activeTab === 'parents' ? 'active' : ''}`}
-              onClick={() => handleNavClick('parents')}
-            >
-              <HeartHandshake size={18} />
-              <span>Parents</span>
             </div>
           </div>
 
@@ -195,7 +200,6 @@ export const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
             <option value="PRINCIPAL">Principal</option>
             <option value="TEACHER">Teacher (Sajith)</option>
             <option value="STUDENT">Student (Ruwin)</option>
-            <option value="PARENT">Parent (Amitha)</option>
           </select>
         </div>
       </aside>

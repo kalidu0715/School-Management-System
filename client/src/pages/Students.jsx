@@ -14,7 +14,7 @@ export const Students = () => {
       <div className="page-title-row">
         <div>
           <h1 className="page-h1">Student Enrolled Roster</h1>
-          <p className="page-sub">View student records, parent linkage, GPA metrics, and attendance tracking.</p>
+          <p className="page-sub">View student records, enrollment status, GPA metrics, and attendance tracking.</p>
         </div>
       </div>
 
@@ -25,7 +25,7 @@ export const Students = () => {
               <tr>
                 <th>STUDENT NAME</th>
                 <th>GRADE LEVEL</th>
-                <th>LINKED PARENT / GUARDIAN</th>
+                <th>EMERGENCY / GUARDIAN CONTACT</th>
                 <th>CUMULATIVE GPA</th>
                 <th>ATTENDANCE RATE</th>
                 <th>PORTAL ACCESS</th>

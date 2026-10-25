@@ -10,7 +10,7 @@ export const CommunityChat = () => {
   const channels = [
     { id: 'general-announcements', name: 'general-announcements', label: 'General Announcements', desc: 'School wide updates & news' },
     { id: 'academic-help', name: 'academic-help', label: 'Academic & Q&A Help', desc: 'Ask subject questions & assignments' },
-    { id: 'parent-forum', name: 'parent-forum', label: 'Parent & Community Forum', desc: 'Parent discussion & PTA topics' },
+    { id: 'sports-extracurricular', name: 'sports-extracurricular', label: 'Sports & Non-Academic Clubs', desc: 'Athletics, tournaments, and practice schedules' },
     { id: 'teacher-lounge', name: 'teacher-lounge', label: 'Faculty & Teacher Lounge', desc: 'Staff collaboration & planning' },
   ];
 
@@ -35,21 +35,21 @@ export const CommunityChat = () => {
     },
     {
       id: 'msg-3',
-      channel: 'parent-forum',
-      sender: 'Amitha',
-      role: 'PARENT',
-      avatar: 'AM',
+      channel: 'sports-extracurricular',
+      sender: 'Tharin',
+      role: 'STUDENT',
+      avatar: 'TH',
       time: '09:30 AM',
-      text: 'Good morning! What time does the PTA assembly begin this Friday?',
+      text: 'Good morning! What time does the National Aquatic trials commence this weekend?',
     },
     {
       id: 'msg-4',
-      channel: 'parent-forum',
-      sender: 'Principal',
-      role: 'PRINCIPAL',
-      avatar: 'PR',
+      channel: 'sports-extracurricular',
+      sender: 'Ruwin',
+      role: 'STUDENT',
+      avatar: 'RU',
       time: '09:35 AM',
-      text: 'Good morning Amitha. The PTA conference commences at 3:00 PM in the Auditorium.',
+      text: 'Swimming trials begin Saturday at 7:00 AM at Sugathadasa. Best of luck Tharin!',
     },
   ]);
 
@@ -83,11 +83,11 @@ export const CommunityChat = () => {
         replySender = 'Sajith';
         replyRole = 'TEACHER';
         replyAvatar = 'SA';
-      } else if (activeChannel === 'parent-forum') {
-        replyText = 'Thank you for sharing this in the parent forum. We will review this at the next PTA meeting.';
-        replySender = 'Amitha';
-        replyRole = 'PARENT';
-        replyAvatar = 'AM';
+      } else if (activeChannel === 'sports-extracurricular') {
+        replyText = 'Sports schedules and tournament results have been published under the Non-Academic tab!';
+        replySender = 'Registrar Office';
+        replyRole = 'REGISTRAR';
+        replyAvatar = 'RO';
       } else if (activeChannel === 'teacher-lounge') {
         replyText = 'Noted! I will add this topic to our upcoming faculty assembly agenda.';
         replySender = 'Principal';
@@ -117,7 +117,7 @@ export const CommunityChat = () => {
       <div className="page-title-row" style={{ marginBottom: '1rem' }}>
         <div>
           <h1 className="page-h1">School Community & Q&A Chat</h1>
-          <p className="page-sub">Public channels for teachers, students, parents, and administration to communicate.</p>
+          <p className="page-sub">Public channels for teachers, students, registrar, and administration to communicate.</p>
         </div>
       </div>
 

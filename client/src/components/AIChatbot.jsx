@@ -136,7 +136,7 @@ export const AIChatbot = () => {
         {
           id: 'bot-' + Date.now(),
           sender: 'bot',
-          text: '💳 Tuition fees for Q1 2026 can be paid via Credit Card or Direct Bank Transfer. Parents can view clearance records under the Parent Network tab. Staff salary management is restricted to Admin & Principal.',
+          text: '💳 Fees can be paid in LKR under the Payments tab for Tuition or Sports (Cricket, Swimming, Badminton, Athletics, etc.). Payment options and fee clearances are strictly controlled by the Registrar Office.',
           time: 'Just now',
         },
       ]);

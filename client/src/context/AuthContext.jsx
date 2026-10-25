@@ -45,16 +45,6 @@ export const PREDEFINED_USERS = [
   },
   {
     id: 'usr-5',
-    name: 'Amitha',
-    email: 'parent@gmail.com',
-    password: 'password123',
-    role: 'PARENT',
-    roleLabel: 'Parent (Ruwin)',
-    avatar: 'AM',
-    department: 'Guardian',
-  },
-  {
-    id: 'usr-6',
     name: 'Registrar Office',
     email: 'registrar@school.edu',
     password: 'password123',
@@ -68,16 +58,29 @@ export const PREDEFINED_USERS = [
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem('sms_auth_user');
-    return saved ? JSON.parse(saved) : null;
+    if (!saved) return null;
+    try {
+      const parsed = JSON.parse(saved);
+      if (parsed.role === 'PARENT') return null;
+      return parsed;
+    } catch {
+      return null;
+    }
   });
 
   const [registeredAccounts, setRegisteredAccounts] = useState(() => {
     const saved = localStorage.getItem('sms_registered_accounts');
-    return saved ? JSON.parse(saved) : PREDEFINED_USERS;
+    if (!saved) return PREDEFINED_USERS;
+    try {
+      const parsed = JSON.parse(saved);
+      return parsed.filter((u) => u.role !== 'PARENT' && u.email !== 'parent@gmail.com');
+    } catch {
+      return PREDEFINED_USERS;
+    }
   });
 
   const [activeRoleView, setActiveRoleView] = useState(() => {
-    return user ? user.role : 'OWNER';
+    return user && user.role !== 'PARENT' ? user.role : 'OWNER';
   });
 
   useEffect(() => {

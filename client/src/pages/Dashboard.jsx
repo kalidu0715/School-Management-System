@@ -25,33 +25,12 @@ export const Dashboard = () => {
     },
     {
       id: 'notif-2',
-      title: 'Grade 10 Parent-Teacher Association (PTA) Conference Schedule',
-      targetAudience: 'Teachers & Parents',
+      title: 'Inter-School Sports Meet & Non-Academic Briefing',
+      targetAudience: 'Teachers & Students',
       priority: 'Important',
-      content: 'PTA meeting scheduled for Friday at 3:00 PM. Individual progress reports have been dispatched to student portals.',
+      content: 'All sports squads are requested to attend the athletic orientation at the Gymnasium on Friday at 3:00 PM.',
       author: 'Admin Office',
       date: 'Mar 10, 2026',
-    },
-  ]);
-
-  const [parentFeedbacks] = useState([
-    {
-      id: 'fb-1',
-      parentName: 'Amitha (Ruwin)',
-      type: '💡 Idea',
-      subject: 'Extend Biology Laboratory Hours for Grade 10',
-      message: 'Requesting extra lab hours on Thursdays for students to complete cell division experiments.',
-      status: 'Reviewed',
-      date: 'Mar 12',
-    },
-    {
-      id: 'fb-2',
-      parentName: 'Supuni (Tharin)',
-      type: '⚠️ Complaint',
-      subject: 'School Bus #4 Morning Route Delay',
-      message: 'Bus #4 arrived 20 minutes late on Tuesday. Kindly check route scheduling.',
-      status: 'Under Investigation',
-      date: 'Mar 11',
     },
   ]);
 
@@ -163,53 +142,6 @@ export const Dashboard = () => {
           ))}
         </div>
       </div>
-
-      {/* Parent Feedback & Complaints Widget (For Admin & Principal) */}
-      {isOwnerOrPrincipal && (
-        <div className="activity-card" style={{ marginBottom: '1.75rem' }}>
-          <div className="card-header-action">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <MessageSquare size={20} color="#7e22ce" />
-              <h2 className="card-title-h2">Parent Ideas, Suggestions & Complaints</h2>
-            </div>
-            <span className="stat-badge" style={{ background: '#f3e8ff', color: '#7e22ce' }}>
-              Parent Inbox
-            </span>
-          </div>
-
-          <div className="table-wrapper">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>PARENT NAME</th>
-                  <th>TYPE</th>
-                  <th>SUBJECT & INQUIRY</th>
-                  <th>STATUS</th>
-                  <th>DATE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {parentFeedbacks.map((fb) => (
-                  <tr key={fb.id}>
-                    <td className="user-name-bold">{fb.parentName}</td>
-                    <td>
-                      <span className="role-pill PARENT">{fb.type}</span>
-                    </td>
-                    <td>
-                      <strong>{fb.subject}</strong>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{fb.message}</div>
-                    </td>
-                    <td>
-                      <span className="stat-badge green">{fb.status}</span>
-                    </td>
-                    <td className="timestamp-col">{fb.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
 
       {/* Recent Cross-Role Activity Table (Only visible to Admin & Principal) */}
       {isOwnerOrPrincipal && <ActivityTable />}

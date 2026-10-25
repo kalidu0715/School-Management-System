@@ -151,7 +151,6 @@ export const Register = ({ onNavigateToLogin }) => {
               >
                 <option value="TEACHER">Teacher</option>
                 <option value="STUDENT">Student</option>
-                <option value="PARENT">Parent</option>
                 <option value="PRINCIPAL">Principal</option>
                 <option value="REGISTRAR">Registrar Office</option>
                 <option value="OWNER">School Owner</option>
